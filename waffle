@@ -7,8 +7,13 @@ if len(sys.argv) == 1:
 	exit(1)
 
 env = sys.argv[1]
+
 retcode = call(["python", "wswitch", "-e", env])
 if retcode != 0:
 	exit(1)
-call(["./waf", "configure", "build"])
-call(["rm", "wscript"])
+retcode = call(["./waf", "configure", "build"])
+if retcode == 0:
+	print "now creating backup..."
+	call(["mkdir", "-p", ".backup"])
+	call(["cp", "-rf", "build", ".backup/build-" + env])
+	print "backup is successfully created"
