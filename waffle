@@ -15,5 +15,6 @@ retcode = call(["./waf", "configure", "build"])
 if retcode == 0:
 	print "now creating backup..."
 	call(["mkdir", "-p", ".backup"])
+	call(["rm", "-rf", ".backup/build-" + env])
 	call(["cp", "-rf", "build", ".backup/build-" + env])
 	print "backup is successfully created"
