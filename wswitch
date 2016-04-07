@@ -32,5 +32,8 @@ if retcode != 0:
 
 with open(ENV_FILE, "w") as f:
 	f.write(options.env)
-print "env has changed: " + current_env + " -> " + options.env
+if current_env == options.env:
+	print "sync new version of env : " + current_env
+else:
+	print "env has changed: " + current_env + " -> " + options.env
 	
